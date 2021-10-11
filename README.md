@@ -1,9 +1,11 @@
 # decrypt
-Emotion is a fundamental component in all of our daily interactions. Every single encounter from waving to someone on the street to a one-on-one interview calls upon a person’s emotional sense; however this sense is significantly dulled by certain disorders, such as Autism or Asperger’s syndrome. This year, even normal people have trouble identifying emotions caused by lack of physical interactions during the pandemic. Emotional misinterpretation like this can often lead to spoiled relationships, opportunities, and lives. Additionally, current treatments to these disorders do not guarantee concrete results, which we will talk in more detail later.
+
+### Emotion is a fundamental component in all of our daily interactions. 
+Every single encounter from waving to someone on the street to a one-on-one interview calls upon a person’s emotional sense; however this sense is significantly dulled by certain disorders, such as Autism or Asperger’s syndrome. This year, even normal people have trouble identifying emotions caused by lack of physical interactions during the pandemic. Emotional misinterpretation like this can often lead to spoiled relationships, opportunities, and lives. Additionally, current treatments to these disorders do not guarantee concrete results, which we will talk in more detail later.
 
 
 
-As of 2015, 15%, or 31 million people are affected by some sort of emotional disorders in the US - ALONE. For autism only, from 1975 to 2009, the probability of autism increased from 1 in 5000 to 1 in 110. This is a massive growth, and doesn’t seem to be slowing down, which means that this is a serious problem that needs to be adequately addressed.
+As of 2015, **15%, or 31 million people** are affected by some sort of emotional disorders in the US - ALONE. For autism only, from 1975 to 2009, the probability of autism increased from 1 in 5000 to 1 in 110. This is a massive growth, and doesn’t seem to be slowing down, which means that this is a serious problem that needs to be adequately addressed.
 
 ---------------------
 
