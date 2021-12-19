@@ -15,7 +15,8 @@ model.load_weights('fer.h5')
 face_haar_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 # take in video
-cap=cv2.VideoCapture(0)
+# "C:/Users/leony/Downloads/decrypt-main/emotion_video.mp4"
+cap=cv2.VideoCapture("C:/Users/leony/Downloads/decrypt-main/emotion_video2.mp4")
 
 
 while True:

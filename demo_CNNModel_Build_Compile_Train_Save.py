@@ -6,18 +6,18 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation, Flatten
 from keras.layers import Conv2D, MaxPooling2D, BatchNormalization,AveragePooling2D
 from keras.losses import categorical_crossentropy
-from keras.optimizers import Adam
+from tensorflow.keras.optimizers import Adam
 from keras.regularizers import l2
 from keras.utils import np_utils
 
 num_features = 64
 num_labels = 7
-batch_size = 64
-epochs = 1
+batch_size = 32
+epochs = 100
 width, height = 48, 48
 
-
-df=pd.read_csv('fer2013.csv')
+dir = "C:/Users/leony/Downloads/decrypt-main/decrypt-main/"
+df=pd.read_csv(dir+'fer2013.csv')
 
 print(df.info())
 print(df["Usage"].value_counts())
@@ -64,44 +64,30 @@ print(X_test.shape[0])
 X_train = X_train.reshape(X_train.shape[0], width, height, 1)
 X_test = X_test.reshape(X_test.shape[0], width, height, 1)
 
-# Sequential model
 model = Sequential()
 
-# 1st Layer 
-model.add(Conv2D(num_features, kernel_size=(3, 3), activation='relu', input_shape=(X_train.shape[1:])))
-model.add(Conv2D(num_features,kernel_size= (3, 3), activation='relu'))
-model.add(MaxPooling2D(pool_size=(2,2), strides=(2, 2)))
-model.add(Dropout(0.5))
-
-#2nd convolution layer
-model.add(Conv2D(64, (3, 3), activation='relu'))
-model.add(Conv2D(64, (3, 3), activation='relu'))
-model.add(MaxPooling2D(pool_size=(2,2), strides=(2, 2)))
-model.add(Dropout(0.5))
-
-#3rd convolution layer
-# double the number of features
-model.add(Conv2D(128, (3, 3), activation='relu'))
-model.add(Conv2D(128, (3, 3), activation='relu'))
-model.add(MaxPooling2D(pool_size=(2,2), strides=(2, 2)))
+model.add(Conv2D(32, (3, 3), activation='relu', padding="same", input_shape=(X_train.shape[1:])))
+model.add(Conv2D(32, (3, 3), padding="same", activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Conv2D(64, (3, 3), activation='relu', padding="same"))
+model.add(Conv2D(64, (3, 3), padding="same", activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Conv2D(96, (3, 3), dilation_rate=(2, 2), activation='relu', padding="same"))
+model.add(Conv2D(96, (3, 3), padding="valid", activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Conv2D(128, (3, 3), dilation_rate=(2, 2), activation='relu', padding="same"))
+model.add(Conv2D(128, (3, 3), padding="valid", activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Flatten())
+model.add(Dense(64, activation='relu'))
+model.add(Dropout(0.4))
+model.add(Dense(7 , activation='sigmoid'))
 
-# Fully connected layers
-model.add(Dense(1024, activation='relu'))
-model.add(Dropout(0.2))
-model.add(Dense(1024, activation='relu'))
-model.add(Dropout(0.2))
-
-# Output layer
-model.add(Dense(num_labels, activation='softmax'))
-
-# print model summary
-model.summary()
-
-# Compile the model
-model.compile(loss=categorical_crossentropy,
-              optimizer=Adam(),
+model.compile(loss='binary_crossentropy',
+              optimizer='adam' ,
               metrics=['accuracy'])
+
+print(model.summary())
 
 # Training the model
 model.fit(X_train, train_y,
@@ -114,9 +100,9 @@ model.fit(X_train, train_y,
 # Save the  model to use later
 fer_json = model.to_json()
 
-with open("fer.json", "w") as json_file:
+with open(dir+"fer.json", "w") as json_file:
     json_file.write(fer_json)
-model.save_weights("fer.h5")
+model.save_weights(dir+"fer.h5")
 
 
 
